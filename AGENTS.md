@@ -74,6 +74,7 @@ Este projeto transforma um **Samsung Galaxy J1 (SM-J120H / Android 5.1.1)** em u
 - **Ver o servidor no J1:** `ssh j1 "tmux attach -t servidor"` (sair com `Ctrl+B` e `D`).
 - **Conferir a API:** `ssh j1 "curl -s http://127.0.0.1:5000/dados"`.
 - **Depois de mudar o agente no PC:** reiniciar o `agente_nitro.py` (toggle do `Cyberdeck_Toggle.vbs` ou encerrar o `pythonw` e subir de novo) — o processo antigo continua com o código velho em memória.
+- **Depois de mudar qualquer coisa em `templates/`:** reiniciar o Flask no J1 **também**. Com `debug=False` o Jinja guarda o template em cache, então um `git pull` sozinho não muda o HTML servido. CSS/JS em `static/` não têm esse problema (mas o cache do navegador sim — por isso o `?v=N` nos links).
 
 ---
 
