@@ -14,6 +14,8 @@
 
 case "$1" in
   celular)
+    # marcador: enquanto nao existir, abrir um Termux novo nao religa o servidor
+    rm -f ~/.painel_on
     if tmux has-session -t servidor 2>/dev/null; then
       tmux kill-session -t servidor
       echo "Servidor DESLIGADO."
@@ -28,6 +30,7 @@ case "$1" in
     echo "Modo CELULAR."
     ;;
   painel)
+    touch ~/.painel_on
     if tmux has-session -t servidor 2>/dev/null; then
       echo "Servidor ja estava ligado."
     else
@@ -35,7 +38,7 @@ case "$1" in
       sleep 2
       echo "Servidor LIGADO na porta 5000."
     fi
-    echo "Toque no atalho J1 Cyberdeck (http://127.0.0.1:5000)."
+    echo "Toque no atalho J1 Cyberdeck."
     echo "Modo PAINEL."
     ;;
   *)
