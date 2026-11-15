@@ -468,5 +468,21 @@ def main():
         time.sleep(1.5)
 
 
+def registrar_falha():
+    """pythonw nao tem console: sem isso um crash some sem deixar rastro."""
+    import traceback
+    try:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "agente.log"),
+                  "a", encoding="utf-8") as arq:
+            arq.write("\n=== %s ===\n" % time.strftime("%Y-%m-%d %H:%M:%S"))
+            traceback.print_exc(file=arq)
+    except Exception:
+        pass
+
+
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BaseException:
+        registrar_falha()
+        raise
