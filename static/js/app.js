@@ -8,6 +8,17 @@
   function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
   function txt(id, v) { var el = $(id); if (el) { el.innerHTML = v; } }
   function show(el, on) { if (el) { el.style.display = on ? '' : 'none'; } }
+  /* Liga/desliga UMA classe sem apagar as outras (nunca perder p2, k7...). */
+  function setState(el, cls, on) {
+    if (!el) { return; }
+    var lista = (' ' + el.className + ' ').replace(/\s+/g, ' ');
+    var alvo = ' ' + cls + ' ';
+    if (on) {
+      if (lista.indexOf(alvo) < 0) { el.className = lista.replace(/^ | $/g, '') + ' ' + cls; }
+    } else if (lista.indexOf(alvo) >= 0) {
+      el.className = lista.replace(alvo, ' ').replace(/^ | $/g, '');
+    }
+  }
   function n(v, suf) {
     return (v === null || v === undefined || v === '') ? '--' : v + (suf || '');
   }
@@ -134,8 +145,8 @@
 
   function flash(el) {
     if (!el) { return; }
-    el.className += ' hot';
-    setTimeout(function () { el.className = el.className.replace(/\s*hot/g, ''); }, 140);
+    setState(el, 'hot', true);
+    setTimeout(function () { setState(el, 'hot', false); }, 140);
   }
 
   /* ================= estado ================= */
@@ -163,7 +174,7 @@
     var led = $('link-led');
     var type = $('link-type');
     var ping = $('link-ping');
-    if (led) { led.className = 'led' + (S.online ? '' : ' off'); }
+    setState(led, 'off', !S.online);
     if (type) { type.innerHTML = S.online ? S.link : 'OFF'; }
     if (ping) { ping.innerHTML = S.online ? (S.rtt > 0 ? S.rtt + 'ms' : '--') : '--'; }
   }
@@ -236,7 +247,7 @@
         S.rtt = d.rtt || 0;
         renderLink();
         var pad = $('pad-play');
-        if (pad) { pad.className = 'pad play' + (d.tocando ? ' playing' : ''); }
+        if (pad) { setState(pad, 'playing', d.tocando === true); }
       });
     }, 2000);
   }
@@ -261,7 +272,7 @@
     txt('np-state', S.tocando ? 'REPRODUZINDO' : 'PAUSADO');
 
     var led = $('np-led');
-    if (led) { led.className = 'led' + (S.tocando ? '' : ' off'); }
+    setState(led, 'off', !S.tocando);
 
     var fill = $('seek-fill');
     var head = $('seek-head');
@@ -269,7 +280,7 @@
     if (head) { head.style.left = pct + '%'; }
 
     var btn = $('np-play');
-    if (btn) { btn.className = 'ctlbtn big' + (S.tocando ? ' playing' : ''); }
+    setState(btn, 'playing', S.tocando === true);
 
     var seek = $('np-seek');
     if (seek) { seek.style.opacity = dur > 0 ? '1' : '.45'; }
@@ -336,21 +347,21 @@
   function setBank(n) {
     show($('bank1'), n === 1);
     show($('bank2'), n === 2);
-    if ($('seg1')) { $('seg1').className = 'seg' + (n === 1 ? ' on' : ''); }
-    if ($('seg2')) { $('seg2').className = 'seg' + (n === 2 ? ' on' : ''); }
+    setState($('seg1'), 'on', n === 1);
+    setState($('seg2'), 'on', n === 2);
   }
 
   function paintMic() {
     var k = $('key-mic');
     if (!k) { return; }
-    k.className = 'key k1' + (S.mic_muted ? ' muted' : '');
+    setState(k, 'muted', S.mic_muted === true);
     txt('mic-sub', S.mic_muted ? 'MIC // MUDO' : 'MIC // ATIVO');
   }
 
   function paintPp() {
     var k = $('key-pp');
     if (!k) { return; }
-    k.className = 'key k7' + (S.tocando ? ' playing' : '');
+    setState(k, 'playing', S.tocando === true);
   }
 
   function onKey() {
