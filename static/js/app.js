@@ -59,22 +59,69 @@
     var rot = $('rotate');
     if (rot) { rot.className = (h > w + 24) ? 'rotate on' : 'rotate'; }
 
-    if (DEBUG) {
-      var chip = $('dbg');
-      if (!chip) {
-        var strip = document.getElementsByClassName('nav-center')[0];
-        if (strip) {
-          chip = document.createElement('span');
-          chip.id = 'dbg';
-          chip.className = 'demo';
-          strip.appendChild(chip);
-        }
-      }
-      if (chip) { chip.innerHTML = w + 'x' + h + ' @' + Math.round(s * 100) + '%'; }
-    }
+    DBG_W = w;
+    DBG_H = h;
+    DBG_S = s;
+    refreshDbg();
 
     lastW = w;
     lastH = h;
+  }
+
+  /* ================= diagnostico (?debug=1) ================= */
+  var DBG_W = 0, DBG_H = 0, DBG_S = 1;
+
+  function refreshDbg() {
+    if (!DEBUG) { return; }
+    var chip = $('dbg');
+    if (!chip) {
+      var strip = document.getElementsByClassName('nav-center')[0];
+      if (!strip) { return; }
+      chip = document.createElement('span');
+      chip.id = 'dbg';
+      chip.className = 'demo';
+      strip.appendChild(chip);
+    }
+    chip.innerHTML = DBG_W + 'x' + DBG_H + ' @' + Math.round(DBG_S * 100) + '% ' + wakeLabel();
+  }
+
+  /* ================= tela sempre acesa =================
+     O painel pede ao Chrome para nao apagar a tela enquanto estiver
+     aberto. So funciona em origem segura: abra por http://127.0.0.1:5000
+     (o proprio celular), nao pelo IP da rede. Fora do painel o tempo
+     normal do Android volta sozinho, porque a trava morre com a aba. */
+  var WAKE = 'off';
+
+  function wakeLabel() {
+    if (!navigator.wakeLock) { return 'WAKE N/A'; }
+    return 'WAKE ' + (WAKE === 'on' ? 'ON' : (WAKE === 'erro' ? 'ERRO' : 'OFF'));
+  }
+
+  function pedirWake() {
+    if (!navigator.wakeLock || WAKE === 'on') { return; }
+    try {
+      navigator.wakeLock.request('screen').then(function (lock) {
+        WAKE = 'on';
+        refreshDbg();
+        /* a trava cai quando a aba vai para segundo plano ou a tela apaga */
+        lock.addEventListener('release', function () {
+          WAKE = 'off';
+          refreshDbg();
+        });
+      }, function () {
+        WAKE = 'erro';
+        refreshDbg();
+      });
+    } catch (e) {
+      WAKE = 'erro';
+    }
+  }
+
+  function keepAwake() {
+    pedirWake();
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') { pedirWake(); }
+    });
   }
 
   function refitSoon() {
@@ -412,6 +459,7 @@
   }
   setInterval(refitSoon, 400);
   renderLink();
+  keepAwake();
 
   var page = document.body.getAttribute('data-page');
   if (page === 'monitor') { initMonitor(); }

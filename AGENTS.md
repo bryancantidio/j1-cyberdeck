@@ -16,9 +16,12 @@ Este projeto transforma um **Samsung Galaxy J1 (SM-J120H / Android 5.1.1)** em u
 ## 2. Como Ligar e Operar o Sistema
 - **No Galaxy J120H (Servidor):**
   - O servidor Flask roda no Termux (`python ~/app.py` na porta `5000`).
+  - **Modo celular / modo painel:** `celular` (`bash ~/modo.sh celular`) desliga o servidor e volta para a tela inicial; `painel` (`bash ~/modo.sh painel`) liga o servidor de novo. Servem para devolver o celular ao uso normal sem desmontar nada.
   - Alias no `~/.bashrc` do J1: `reiniciar` (mata o `app.py` anterior e sobe de novo) e `deploy` (`cd ~ && git pull origin main && reiniciar`). **Aliases não existem em SSH não-interativo** — ver seção 5.
-  - O navegador roda como **PWA instalada** (`static/manifest.json`: `display: standalone`, `orientation: landscape`). Abrir pelo atalho da tela inicial é o que garante a tela cheia; a barra de status é oculta via ADB (`immersive.status=*`).
-  - Diagnóstico de layout: abrir qualquer página com `?debug=1` mostra no rodapé o viewport real e a escala aplicada (ex. `533x320 @66%`).
+  - O navegador roda como **PWA** (`static/manifest.json`: `display: standalone`, `orientation: landscape`). O atalho da tela inicial deve apontar para **`http://127.0.0.1:5000`** (não para o IP da rede): `127.0.0.1` é origem segura para o Chrome, o que libera a PWA de verdade e a trava de tela; e não quebra quando o roteador muda o IP.
+  - **Barra de notificações:** escondida **só dentro do Chrome** via ADB (`settings put global policy_control "immersive.status=com.android.chrome"`). No resto do celular a barra aparece normal. Isso é ajuste de sistema: **o Termux não consegue mudar** (SecurityException, sem root) — só o PC com o cabo via `adb`. Para desfazer de vez: `adb shell settings put global policy_control null`.
+  - **Tela não apaga no painel:** o `app.js` pede um *wake lock* ao Chrome (`navigator.wakeLock`). Vale enquanto a aba do painel estiver visível; ao sair, o tempo normal do Android (10 min) volta sozinho. Sem `navigator.wakeLock` (Chrome antigo ou aberto pelo IP em vez de `127.0.0.1`), a tela volta a apagar — o `?debug=1` mostra `WAKE N/A/ON/OFF/ERRO` no rodapé.
+  - Diagnóstico de layout: abrir qualquer página com `?debug=1` mostra no rodapé o viewport real, a escala aplicada e o estado do wake lock (ex. `533x320 @66% WAKE ON`).
 - **No Acer Nitro (PC):**
   - Clique no atalho **Cyberdeck J1** na barra de tarefas (`Cyberdeck_Toggle.vbs`) para ligar ou desligar o envio de dados em background.
 - **Conexão Inteligente (Failover USB / Wi-Fi):**
@@ -33,6 +36,7 @@ Este projeto transforma um **Samsung Galaxy J1 (SM-J120H / Android 5.1.1)** em u
   - `app.py`: Servidor Flask (J120H)
   - `agente_nitro.py`: Agente de telemetria e macros (Windows)
   - `Cyberdeck_Toggle.vbs`: Liga/desliga o agente no Windows sem janela de terminal
+  - `modo.sh`: Roda no J1. `celular` (para o servidor e volta pra home) e `painel` (religa o servidor)
   - `AGENTS.md`: Documentação de contexto para agentes de IA
   - `templates/`: Interfaces HTML (alvo 800x480 px landscape, escaladas para o viewport real)
     - `index.html` (Rota `/`): Monitor (relógio, CPU, RAM, GPU, térmica, rede, host, uptime)
@@ -68,7 +72,8 @@ Este projeto transforma um **Samsung Galaxy J1 (SM-J120H / Android 5.1.1)** em u
 ## 5. Comandos de Deploy e Manutenção
 - **Deploy completo (PC -> GitHub -> J120H + Reinício):**
   `git add . && git commit -m "update" && git push origin main && ssh j1 "cd ~ && git pull origin main && bash -ic reiniciar"`
-- **Como o servidor roda no J1:** dentro do **tmux**, sessão `servidor` (`tmux new-session -d -s servidor "python ~/app.py"`). Aliases do `~/.bashrc`: `ligar`, `desligar`, `reiniciar`, `tela`, `status`. Alias só existe em shell interativo — em SSH use `bash -ic 'reiniciar'`.
+- **Como o servidor roda no J1:** dentro do **tmux**, sessão `servidor` (`tmux new-session -d -s servidor "python ~/app.py"`). Aliases do `~/.bashrc`: `ligar`, `desligar`, `reiniciar`, `tela`, `status`, `celular`, `painel`. Alias só existe em shell interativo — em SSH use `bash -ic 'reiniciar'`.
+- **Devolver o celular ao uso normal:** no Termux, `celular` (servidor parado + tela inicial). Para voltar ao painel: `painel` e depois tocar no atalho.
 - **Se o alias falhar:** `ssh j1 "tmux kill-session -t servidor 2>/dev/null; tmux new-session -d -s servidor 'python ~/app.py'"`
 - **Acesso SSH direto ao J120H:** `ssh j1` (Host `192.168.1.226`, Porta `8022`, Usuário `u0_a120`).
 - **Ver o servidor no J1:** `ssh j1 "tmux attach -t servidor"` (sair com `Ctrl+B` e `D`).
