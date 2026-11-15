@@ -67,11 +67,13 @@ Este projeto transforma um **Samsung Galaxy J1 (SM-J120H / Android 5.1.1)** em u
 
 ## 5. Comandos de Deploy e Manutenção
 - **Deploy completo (PC -> GitHub -> J120H + Reinício):**
-  `git add . && git commit -m "update" && git push origin main && ssh j1 "cd ~ && git pull origin main"`
-  Depois, reiniciar o Flask no J1 (o alias `reiniciar` não existe em shell não-interativo):
-  `ssh j1 "pkill -f 'python ~/app.py' ; cd ~ && nohup python app.py > ~/app.log 2>&1 &"`
+  `git add . && git commit -m "update" && git push origin main && ssh j1 "cd ~ && git pull origin main && bash -ic reiniciar"`
+- **Como o servidor roda no J1:** dentro do **tmux**, sessão `servidor` (`tmux new-session -d -s servidor "python ~/app.py"`). Aliases do `~/.bashrc`: `ligar`, `desligar`, `reiniciar`, `tela`, `status`. Alias só existe em shell interativo — em SSH use `bash -ic 'reiniciar'`.
+- **Se o alias falhar:** `ssh j1 "tmux kill-session -t servidor 2>/dev/null; tmux new-session -d -s servidor 'python ~/app.py'"`
 - **Acesso SSH direto ao J120H:** `ssh j1` (Host `192.168.1.226`, Porta `8022`, Usuário `u0_a120`).
-- **Log do servidor no J1:** `ssh j1 "tail -n 40 ~/app.log"`.
+- **Ver o servidor no J1:** `ssh j1 "tmux attach -t servidor"` (sair com `Ctrl+B` e `D`).
+- **Conferir a API:** `ssh j1 "curl -s http://127.0.0.1:5000/dados"`.
+- **Depois de mudar o agente no PC:** reiniciar o `agente_nitro.py` (toggle do `Cyberdeck_Toggle.vbs` ou encerrar o `pythonw` e subir de novo) — o processo antigo continua com o código velho em memória.
 
 ---
 

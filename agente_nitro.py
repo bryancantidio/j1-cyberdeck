@@ -253,9 +253,8 @@ async def _seek_async(ms):
     if atual is None:
         return False
     try:
-        ok = await atual.try_change_playback_position_async(
-            datetime.timedelta(milliseconds=int(ms))
-        )
+        # pywinrt espera ticks de 100ns (int), nao timedelta
+        ok = await atual.try_change_playback_position_async(int(ms) * 10000)
         return bool(ok)
     except Exception:
         return False
