@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0A0A0C">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="application-name" content="J1 Cyberdeck">
+<meta name="apple-mobile-web-app-title" content="J1 Cyberdeck">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>J1 // M&iacute;dia</title>
+<link rel="manifest" href="/static/manifest.json">
+<link rel="icon" href="/static/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+<link rel="stylesheet" href="/static/css/app.css?v=1">
+</head>
+<body data-page="midia">
+<div class="stage" id="stage">
+  <div class="screen">
+    <div class="page">
+      <div class="pads">
+
+        <button type="button" class="pad p1" data-cmd="prev">
+          <span class="led"></span>
+          <span class="mid"><svg class="ico" viewBox="0 -960 960 960"><path d="M220-240v-480h80v480h-80Zm520 0L380-480l360-240v480Z"/></svg></span>
+          <span class="sub">FAIXA // ANTERIOR</span>
+        </button>
+
+        <button type="button" class="pad play p2" id="pad-play" data-cmd="playpause">
+          <span class="led"></span>
+          <span class="mid"><svg class="ico play-on" viewBox="0 -960 960 960"><path d="M320-200v-560l440 280-440 280Z"/></svg><svg class="ico play-off" viewBox="0 -960 960 960"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"/></svg></span>
+          <span class="sub">MASTER // PLAY</span>
+        </button>
+
+        <button type="button" class="pad p3" data-cmd="next">
+          <span class="led"></span>
+          <span class="mid"><svg class="ico" viewBox="0 -960 960 960"><path d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Z"/></svg></span>
+          <span class="sub">FAIXA // PR&Oacute;XIMA</span>
+        </button>
+
+        <button type="button" class="pad p4" data-cmd="voldown">
+          <span class="led"></span>
+          <span class="mid"><svg class="ico" viewBox="0 -960 960 960"><path d="M200-360v-240h160l200-200v640L360-360H200Zm440 40v-322q45 21 72.5 65t27.5 97q0 53-27.5 96T640-320ZM480-606l-86 86H280v80h114l86 86v-252ZM380-480Z"/></svg></span>
+          <span class="sub">N&Iacute;VEL // DEC</span>
+        </button>
+
+        <button type="button" class="pad p5" data-cmd="mute">
+          <span class="led"></span>
+          <span class="mid"><svg class="ico" viewBox="0 -960 960 960"><path d="M792-56 671-177q-25 16-53 27.5T560-131v-82q14-5 27.5-10t25.5-12L480-368v208L280-360H120v-240h128L56-792l56-56 736 736-56 56Zm-8-232-58-58q17-31 25.5-65t8.5-70q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 53-14.5 102T784-288ZM650-422l-90-90v-130q47 22 73.5 66t26.5 96q0 15-2.5 29.5T650-422ZM480-592 376-696l104-104v208Zm-80 238v-94l-72-72H200v80h114l86 86Zm-36-130Z"/></svg></span>
+          <span class="sub">ATEN&Ccedil;&Atilde;O // MUTE</span>
+        </button>
+
+        <button type="button" class="pad p6" data-cmd="volup">
+          <span class="led"></span>
+          <span class="mid"><svg class="ico" viewBox="0 -960 960 960"><path d="M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm440 40v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320ZM400-606l-86 86H200v80h114l86 86v-252ZM300-480Z"/></svg></span>
+          <span class="sub">N&Iacute;VEL // INC</span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <a class="nav-arrow left" href="/" aria-label="P&aacute;gina anterior"><svg class="ico" viewBox="0 -960 960 960"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></a>
+    <div class="nav-center"><span class="pg">M&Iacute;DIA</span><span class="slash">/</span>02<span class="slash">/</span>04<span class="dots"><i class="dot"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i></span></div>
+    <div class="link"><span class="led" id="link-led"></span><span id="link-type">--</span><span class="ping" id="link-ping">--</span></div>
+    <a class="nav-arrow right" href="/nowplaying" aria-label="Pr&oacute;xima p&aacute;gina"><svg class="ico" viewBox="0 -960 960 960"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg></a>
+  </div>
+</div>
+<script src="/static/js/app.js?v=1"></script>
+</body>
+</html>

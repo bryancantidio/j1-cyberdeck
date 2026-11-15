@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0A0A0C">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="application-name" content="J1 Cyberdeck">
+<meta name="apple-mobile-web-app-title" content="J1 Cyberdeck">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>J1 // Monitor</title>
+<link rel="manifest" href="/static/manifest.json">
+<link rel="icon" href="/static/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+<link rel="stylesheet" href="/static/css/app.css?v=1">
+</head>
+<body data-page="monitor">
+<div class="stage" id="stage">
+  <div class="screen">
+    <div class="page">
+
+      <div class="card clock-card">
+        <div class="topline"><span class="led"></span>CHRONO // BRT<span class="r">24H</span></div>
+        <div class="clock-time mono"><span id="clk-h">--</span><span class="colon">:</span><span id="clk-m">--</span><span class="clock-sec" id="clk-s">.00</span></div>
+        <div class="clock-date"><span id="clk-date">---</span><span class="sl">&bull;</span><span class="cy">UTC-3</span></div>
+        <div class="host-box">
+          <div class="host-row">HOST<b id="m-host">&mdash;</b></div>
+          <div class="host-row">UPTIME<b id="m-uptime">--:--:--</b></div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="card stat s1">
+          <div class="head">01 // CPU<span class="led on"></span></div>
+          <div class="val mono"><span id="m-cpu">--</span><span class="unit">%</span></div>
+          <div class="bar"><div class="fill" id="m-cpu-bar"></div></div>
+          <div class="sub"><span id="m-cpu-ghz">-- GHz</span><span class="r" id="m-cpu-thr">--</span></div>
+        </div>
+        <div class="card stat s2">
+          <div class="head">02 // MEM<span class="led"></span></div>
+          <div class="val mono"><span id="m-ram">--</span><span class="unit">%</span></div>
+          <div class="bar"><div class="fill w" id="m-ram-bar"></div></div>
+          <div class="sub"><span id="m-ram-use">-- GB</span><span class="r" id="m-ram-total">-- GB</span></div>
+        </div>
+        <div class="card stat s3">
+          <div class="head">03 // GPU<span class="led"></span></div>
+          <div class="val mono"><span id="m-gpu">--</span><span class="unit">%</span></div>
+          <div class="bar"><div class="fill w" id="m-gpu-bar"></div></div>
+          <div class="sub"><span id="m-gpu-mhz">--</span><span class="r" id="m-gpu-name">GPU</span></div>
+        </div>
+        <div class="card stat s4">
+          <div class="head">04 // THERMAL<span class="led on"></span></div>
+          <div class="val mono"><span id="m-temp">--</span><span class="unit">&deg;C</span></div>
+          <div class="bar"><div class="fill" id="m-temp-bar"></div></div>
+          <div class="sub"><span id="m-fan">FAN --</span><span class="r" id="m-temp-state">--</span></div>
+        </div>
+      </div>
+
+      <div class="card netbar">
+        <span class="grp"><span class="arr">&darr;</span>DL<span class="num" id="n-down">0 KB/s</span></span>
+        <span class="sep"></span>
+        <span class="grp"><span class="arr">&uarr;</span>UL<span class="num" id="n-up">0 KB/s</span></span>
+        <span class="right grp"><svg class="ico" viewBox="0 -960 960 960"><path d="M480-80q-33 0-56.5-23.5T400-160q0-21 11-39t29-29v-92H320q-33 0-56.5-23.5T240-400v-92q-18-9-29-27t-11-41q0-33 23.5-56.5T280-640q33 0 56.5 23.5T360-560q0 23-11 40t-29 28v92h120v-320h-80l120-160 120 160h-80v320h120v-80h-40v-160h160v160h-40v80q0 33-23.5 56.5T640-320H520v92q19 10 29.5 28t10.5 40q0 33-23.5 56.5T480-80Z"/></svg>IF // <span id="n-if">--</span><span class="sep"></span><span class="bars"><i class="a" style="height:4px"></i><i class="a" style="height:7px"></i><i class="a" style="height:10px"></i><i style="height:13px"></i></span></span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="strip">
+    <a class="nav-arrow left" href="/deck" aria-label="P&aacute;gina anterior"><svg class="ico" viewBox="0 -960 960 960"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></a>
+    <div class="nav-center"><span class="pg">MONITOR</span><span class="slash">/</span>01<span class="slash">/</span>04<span class="dots"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span></div>
+    <div class="link"><span class="led" id="link-led"></span><span id="link-type">--</span><span class="ping" id="link-ping">--</span></div>
+    <a class="nav-arrow right" href="/midia" aria-label="Pr&oacute;xima p&aacute;gina"><svg class="ico" viewBox="0 -960 960 960"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg></a>
+  </div>
+</div>
+<script src="/static/js/app.js?v=1"></script>
+</body>
+</html>

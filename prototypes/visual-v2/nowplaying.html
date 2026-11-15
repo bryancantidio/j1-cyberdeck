@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0A0A0C">
+<title>J1 // Tocando</title>
+<link rel="stylesheet" href="assets/css/app.css?v=3">
+</head>
+<body data-page="nowplaying">
+<div class="stage" id="stage">
+  <div class="screen">
+    <div class="page">
+      <div class="np">
+
+        <div class="np-top">
+          <div class="np-chip"><span class="led" id="np-led"></span>PLAYBACK<span class="dim"> // </span><span id="np-state">REPRODUZINDO</span></div>
+          <div class="np-vol">VOL<b id="np-vol">24</b></div>
+        </div>
+
+        <div class="np-body">
+          <div class="np-kicker">NOW PLAYING // NITRO</div>
+          <div class="np-title mono" id="np-title">Solaris Dreams</div>
+          <div class="np-artist"><span id="np-artist">Tycho</span><span class="sep">&bull;</span><span class="src"><svg class="ico" viewBox="0 -960 960 960"><path d="M400-120q-66 0-113-47t-47-113q0-66 47-113t113-47q23 0 42.5 5.5T480-418v-422h240v160H560v400q0 66-47 113t-113 47Z"/></svg><span id="np-src">Spotify</span></span></div>
+
+          <div class="np-seek" id="np-seek">
+            <div class="seek-track">
+              <div class="seek-fill" id="seek-fill"></div>
+              <div class="seek-head" id="seek-head"></div>
+            </div>
+            <div class="np-times"><span id="np-elapsed">00:00</span><span class="r" id="np-remain">-00:00</span></div>
+          </div>
+        </div>
+
+        <div class="np-ctl">
+          <button type="button" class="ctlbtn mini vold" id="np-vold" aria-label="Volume -"><svg class="ico" viewBox="0 -960 960 960"><path d="M200-360v-240h160l200-200v640L360-360H200Zm440 40v-322q45 21 72.5 65t27.5 97q0 53-27.5 96T640-320ZM480-606l-86 86H280v80h114l86 86v-252ZM380-480Z"/></svg></button>
+          <button type="button" class="ctlbtn prev" id="np-prev" aria-label="Faixa anterior"><svg class="ico" viewBox="0 -960 960 960"><path d="M220-240v-480h80v480h-80Zm520 0L380-480l360-240v480Z"/></svg></button>
+          <button type="button" class="ctlbtn big playing" id="np-play" aria-label="Reproduzir ou pausar"><svg class="ico play-ico" viewBox="0 -960 960 960"><path d="M320-200v-560l440 280-440 280Z"/></svg><svg class="ico pause-ico" viewBox="0 -960 960 960"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"/></svg></button>
+          <button type="button" class="ctlbtn next" id="np-next" aria-label="Pr&oacute;xima faixa"><svg class="ico" viewBox="0 -960 960 960"><path d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Z"/></svg></button>
+          <button type="button" class="ctlbtn mini volu" id="np-volu" aria-label="Volume +"><svg class="ico" viewBox="0 -960 960 960"><path d="M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm440 40v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320ZM400-606l-86 86H200v80h114l86 86v-252ZM300-480Z"/></svg></button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <a class="nav-arrow left" href="midia.html" aria-label="P&aacute;gina anterior"><svg class="ico" viewBox="0 -960 960 960"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></a>
+    <div class="nav-center"><span class="pg">TOCANDO</span><span class="slash">/</span>03<span class="slash">/</span>04<span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot on"></i><i class="dot"></i></span><span class="demo">DEMO</span></div>
+    <div class="link"><span class="led" id="link-led"></span><span id="link-type">USB</span><span class="ping" id="link-ping">12ms</span></div>
+    <a class="nav-arrow right" href="deck.html" aria-label="Pr&oacute;xima p&aacute;gina"><svg class="ico" viewBox="0 -960 960 960"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg></a>
+  </div>
+</div>
+<script src="assets/js/app.js?v=3"></script>
+</body>
+</html>

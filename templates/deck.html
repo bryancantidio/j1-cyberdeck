@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0A0A0C">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="application-name" content="J1 Cyberdeck">
+<meta name="apple-mobile-web-app-title" content="J1 Cyberdeck">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>J1 // Deck</title>
+<link rel="manifest" href="/static/manifest.json">
+<link rel="icon" href="/static/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+<link rel="stylesheet" href="/static/css/app.css?v=1">
+</head>
+<body data-page="deck">
+<div class="stage" id="stage">
+  <div class="screen">
+    <div class="page">
+
+      <div class="deck-head">
+        <div class="l">DECK <span class="sep">/</span> MACROS <span class="sep">/</span> &Uacute;LTIMA: <b id="last">&mdash;</b></div>
+        <div class="bank"><button type="button" class="seg on" id="seg1">1</button><button type="button" class="seg" id="seg2">2</button></div>
+      </div>
+
+      <div class="keys">
+        <div class="bankview" id="bank1">
+
+          <button type="button" class="key k1" data-cmd="vscode" data-name="VS Code">
+            <span class="tag"><span class="led"></span>K-01</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M320-240 80-480l240-240 57 57-184 184 183 183-56 56Zm320 0-57-57 184-184-183-183 56-56 240 240-240 240Z"/></svg></span>
+              <span class="name">VS Code</span>
+              <span class="sub">APP // CODE</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k2" data-cmd="terminal" data-name="Terminal">
+            <span class="tag"><span class="led"></span>K-02</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H160v400Zm140-40-56-56 103-104-104-104 57-56 160 160-160 160Zm180 0v-80h240v80H480Z"/></svg></span>
+              <span class="name">Terminal</span>
+              <span class="sub">APP // SHELL</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k3" data-cmd="browser" data-name="Navegador">
+            <span class="tag"><span class="led"></span>K-03</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-82v-78q-33 0-56.5-23.5T360-320v-40L168-552q-3 18-5.5 36t-2.5 36q0 121 79.5 212T440-162Zm276-102q20-22 36-47.5t26.5-53q10.5-27.5 16-56.5t5.5-59q0-98-54.5-179T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h240q17 0 28.5 11.5T600-440v120h40q26 0 47 15.5t29 40.5Z"/></svg></span>
+              <span class="name">Navegador</span>
+              <span class="sub">APP // WEB</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k4" data-cmd="spotify" data-name="Spotify">
+            <span class="tag"><span class="led"></span>K-04</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M400-120q-66 0-113-47t-47-113q0-66 47-113t113-47q23 0 42.5 5.5T480-418v-422h240v160H560v400q0 66-47 113t-113 47Z"/></svg></span>
+              <span class="name">Spotify</span>
+              <span class="sub">APP // M&Uacute;SICA</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k5" data-cmd="discord" data-name="Discord">
+            <span class="tag"><span class="led"></span>K-05</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg></span>
+              <span class="name">Discord</span>
+              <span class="sub">APP // VOZ</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k6" data-cmd="steam" data-name="Steam">
+            <span class="tag"><span class="led"></span>K-06</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M182-200q-51 0-79-35.5T82-322l42-300q9-60 53.5-99T282-760h396q60 0 104.5 39t53.5 99l42 300q7 51-21 86.5T778-200q-21 0-39-7.5T706-230l-90-90H344l-90 90q-15 15-33 22.5t-39 7.5Zm16-86 114-114h336l114 114q2 2 16 6 11 0 17.5-6.5T800-304l-44-308q-4-29-26-48.5T678-680H282q-30 0-52 19.5T204-612l-44 308q-2 11 4.5 17.5T182-280q2 0 16-6Zm482-154q17 0 28.5-11.5T720-480q0-17-11.5-28.5T680-520q-17 0-28.5 11.5T640-480q0 17 11.5 28.5T680-440Zm-80-120q17 0 28.5-11.5T640-600q0-17-11.5-28.5T600-640q-17 0-28.5 11.5T560-600q0 17 11.5 28.5T600-560ZM310-440h60v-70h70v-60h-70v-70h-60v70h-70v60h70v70Zm170-40Z"/></svg></span>
+              <span class="name">Steam</span>
+              <span class="sub">APP // GAMES</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k7" data-cmd="obs" data-name="OBS Studio">
+            <span class="tag"><span class="led"></span>K-07</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h480q33 0 56.5 23.5T720-720v180l160-160v440L720-420v180q0 33-23.5 56.5T640-160H160Zm0-80h480v-480H160v480Zm0 0v-480 480Z"/></svg></span>
+              <span class="name">OBS Studio</span>
+              <span class="sub">APP // STREAM</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k8" data-cmd="github" data-name="GitHub Desktop">
+            <span class="tag"><span class="led"></span>K-08</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M600-120v-120H440v-400h-80v120H80v-320h280v120h240v-120h280v320H600v-120h-80v320h80v-120h280v320H600ZM160-760v160-160Zm520 400v160-160Zm0-400v160-160Zm0 160h120v-160H680v160Zm0 400h120v-160H680v160ZM160-600h120v-160H160v160Z"/></svg></span>
+              <span class="name">GitHub Desktop</span>
+              <span class="sub">APP // GIT</span>
+            </span>
+          </button>
+
+        </div>
+
+        <div class="bankview" id="bank2" style="display:none">
+
+          <button type="button" class="key k1" id="key-mic" data-cmd="mic_mute" data-name="Mic">
+            <span class="tag"><span class="led"></span>K-01</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico mic-on" viewBox="0 -960 960 960"><path d="M480-400q-50 0-85-35t-35-85v-240q0-50 35-85t85-35q50 0 85 35t35 85v240q0 50-35 85t-85 35Zm0-240Zm-40 520v-123q-104-14-172-93t-68-184h80q0 83 58.5 141.5T480-320q83 0 141.5-58.5T680-520h80q0 105-68 184t-172 93v123h-80Zm40-360q17 0 28.5-11.5T520-520v-240q0-17-11.5-28.5T480-800q-17 0-28.5 11.5T440-760v240q0 17 11.5 28.5T480-480Z"/></svg><svg class="ico mic-off" viewBox="0 -960 960 960"><path d="m710-362-58-58q14-23 21-48t7-52h80q0 44-13 83.5T710-362ZM480-594Zm112 112-72-72v-206q0-17-11.5-28.5T480-800q-17 0-28.5 11.5T440-760v126l-80-80v-46q0-50 35-85t85-35q50 0 85 35t35 85v240q0 11-2.5 20t-5.5 18ZM440-120v-123q-104-14-172-93t-68-184h80q0 83 57.5 141.5T480-320q34 0 64.5-10.5T600-360l57 57q-29 23-63.5 39T520-243v123h-80Zm352 64L56-792l56-56 736 736-56 56Z"/></svg></span>
+              <span class="name">Mutar Mic</span>
+              <span class="sub" id="mic-sub">MIC // ATIVO</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k2" data-cmd="alt_tab" data-name="Alt+Tab">
+            <span class="tag"><span class="led"></span>K-02</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M360-280q-33 0-56.5-23.5T280-360v-400q0-33 23.5-56.5T360-840h400q33 0 56.5 23.5T840-760v400q0 33-23.5 56.5T760-280H360Zm0-80h400v-400H360v400ZM200-200v80q-33 0-56.5-23.5T120-200h80Zm-80-80v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm160 480v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Z"/></svg></span>
+              <span class="name">Alt+Tab</span>
+              <span class="sub">A&Ccedil;&Atilde;O // JANELAS</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k3" data-cmd="screenshot" data-name="Print">
+            <span class="tag"><span class="led"></span>K-03</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M600-320h160v-160h-60v100H600v60ZM200-560h60v-100h100v-60H200v160Zm120 440v-80H160q-33 0-56.5-23.5T80-280v-480q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v480q0 33-23.5 56.5T800-200H640v80H320ZM160-280h640v-480H160v480Zm0 0v-480 480Z"/></svg></span>
+              <span class="name">Print</span>
+              <span class="sub">A&Ccedil;&Atilde;O // CAPTURA</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k4" data-cmd="lock" data-name="Bloquear">
+            <span class="tag"><span class="led"></span>K-04</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"/></svg></span>
+              <span class="name">Bloquear</span>
+              <span class="sub">A&Ccedil;&Atilde;O // SISTEMA</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k5" data-cmd="desktop" data-name="Desktop">
+            <span class="tag"><span class="led"></span>K-05</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M320-120v-80h80v-80H160q-33 0-56.5-23.5T80-360v-400q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v400q0 33-23.5 56.5T800-280H560v80h80v80H320ZM160-360h640v-400H160v400Zm0 0v-400 400Z"/></svg></span>
+              <span class="name">Desktop</span>
+              <span class="sub">A&Ccedil;&Atilde;O // JANELAS</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k6" data-cmd="taskmgr" data-name="Tarefas">
+            <span class="tag"><span class="led"></span>K-06</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M160-120q-33 0-56.5-23.5T80-200v-560q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v560q0 33-23.5 56.5T800-120H160Zm0-80h640v-560H160v560Zm40-80h200v-80H200v80Zm382-80 198-198-57-57-141 142-57-57-56 57 113 113Zm-382-80h200v-80H200v80Zm0-160h200v-80H200v80Zm-40 400v-560 560Z"/></svg></span>
+              <span class="name">Tarefas</span>
+              <span class="sub">CTRL+SHIFT+ESC</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k7" id="key-pp" data-cmd="playpause" data-name="Play/Pause">
+            <span class="tag"><span class="led"></span>K-07</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico pp-play" viewBox="0 -960 960 960"><path d="M320-200v-560l440 280-440 280Z"/></svg><svg class="ico pp-pause" viewBox="0 -960 960 960"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"/></svg></span>
+              <span class="name">Play/Pause</span>
+              <span class="sub">A&Ccedil;&Atilde;O // M&Iacute;DIA</span>
+            </span>
+          </button>
+
+          <button type="button" class="key k8" data-cmd="mute" data-name="Mudo">
+            <span class="tag"><span class="led"></span>K-08</span>
+            <span class="body">
+              <span class="icbox"><svg class="ico" viewBox="0 -960 960 960"><path d="M792-56 671-177q-25 16-53 27.5T560-131v-82q14-5 27.5-10t25.5-12L480-368v208L280-360H120v-240h128L56-792l56-56 736 736-56 56Zm-8-232-58-58q17-31 25.5-65t8.5-70q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 53-14.5 102T784-288ZM650-422l-90-90v-130q47 22 73.5 66t26.5 96q0 15-2.5 29.5T650-422ZM480-592 376-696l104-104v208Zm-80 238v-94l-72-72H200v80h114l86 86Zm-36-130Z"/></svg></span>
+              <span class="name">Mudo</span>
+              <span class="sub">A&Ccedil;&Atilde;O // &Aacute;UDIO</span>
+            </span>
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="strip">
+    <a class="nav-arrow left" href="/nowplaying" aria-label="P&aacute;gina anterior"><svg class="ico" viewBox="0 -960 960 960"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></a>
+    <div class="nav-center"><span class="pg">DECK</span><span class="slash">/</span>04<span class="slash">/</span>04<span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot on"></i></span></div>
+    <div class="link"><span class="led" id="link-led"></span><span id="link-type">--</span><span class="ping" id="link-ping">--</span></div>
+    <a class="nav-arrow right" href="/" aria-label="Pr&oacute;xima p&aacute;gina"><svg class="ico" viewBox="0 -960 960 960"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg></a>
+  </div>
+</div>
+<script src="/static/js/app.js?v=1"></script>
+</body>
+</html>
